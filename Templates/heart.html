@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img {
+            width: 400px;
+            border-radius: 10px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            background-color: #b02a37;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='heart.jpg') }}" alt="Heart Health">
+    </div>
+
+    <div class="form-container">
+        <h2>Heart Disease Prediction Form</h2>
+        <form method="POST" action="/heart">
+            <div class="form-group"><input type="text" name="age" placeholder="Age"></div>
+            <div class="form-group"><input type="text" name="sex" placeholder="Sex (1 = Male, 0 = Female)"></div>
+            <div class="form-group"><input type="text" name="cp" placeholder="Chest Pain Type"></div>
+            <div class="form-group"><input type="text" name="trestbps" placeholder="Resting Blood Pressure"></div>
+            <div class="form-group"><input type="text" name="chol" placeholder="Cholesterol"></div>
+            <div class="form-group"><input type="text" name="fbs" placeholder="Fasting Blood Sugar (1/0)"></div>
+            <div class="form-group"><input type="text" name="restecg" placeholder="Resting ECG Result"></div>
+            <div class="form-group"><input type="text" name="thalach" placeholder="Max Heart Rate"></div>
+            <div class="form-group"><input type="text" name="exang" placeholder="Exercise Induced Angina (1/0)"></div>
+            <div class="form-group"><input type="text" name="oldpeak" placeholder="ST Depression "></div>
+            <div class="form-group"><input type="text" name="slope" placeholder="Slope of peak Exercise ST"></div>
+            <div class="form-group"><input type="text" name="ca" placeholder="Number of Major Vessels"></div>
+            <div class="form-group"><input type="text" name="thal" placeholder="Thalassemia(0=Normal, 1=fixed)"></div>
+
+           <button class="btn" type="submit">Predict</button>
+        </form>
+
+         {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liver Disease Prediction</title>
+    <style>
+        body {
+            background-color: #e8f0fe;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img {
+            width: 400px;
+            border-radius: 10px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            background-color: #1e7e34;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img src="{{ url_for('static', filename='liver.jpg') }}" alt="Liver Check">
+    </div>
+
+    <div class="form-container">
+        <h2>Liver Disease Prediction Form</h2>
+        <form method="POST" action="/liver">
+            <div class="form-group"><input type="text" name="Age" placeholder="Age"></div>
+            <div class="form-group"><input type="text" name="Gender" placeholder="Gender (1 = Male, 0 = Female)"></div>
+            <div class="form-group"><input type="text" name="Total_Bilirubin" placeholder="Total Bilirubin"></div>
+            <div class="form-group"><input type="text" name="Direct_Bilirubin" placeholder="Direct Bilirubin"></div>
+            <div class="form-group"><input type="text" name="Alkaline_Phosphotase" placeholder="Alkaline Phosphotase"></div>
+            <div class="form-group"><input type="text" name="Alamine_Aminotransferase" placeholder="Alamine Aminotransferase"></div>
+            <div class="form-group"><input type="text" name="Aspartate_Aminotransferase" placeholder="Aspartate Aminotransferase"></div>
+            <div class="form-group"><input type="text" name="Total_Protiens" placeholder="Total Proteins"></div>
+            <div class="form-group"><input type="text" name="Albumin" placeholder="Albumin"></div>
+            <div class="form-group"><input type="text" name="Albumin_and_Globulin_Ratio" placeholder="A/G Ratio"></div>
+            <button class="btn" type="submit">Predict</button>
+        </form>
+
+         {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</div>
+
+</body>
+</html>
